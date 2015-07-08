@@ -4,11 +4,19 @@ $(document).ready(function() {
         var children = $(this).parent('li.parent_li').find(' > ul > li');
         if (children.is(':visible')) {
     		children.hide('fast');
-    		$(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
+    		if($(this).attr('title', 'Expand this branch').find(' > i').hasClass('icon-folder-open')) {
+			$(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-folder-close').removeClass('icon-folder-open');
+		} else {
+			$(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
+		}
         }
         else {
     		children.show('fast');
-    		$(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+    		if($(this).attr('title', 'Collapse this branch').find(' > i').hasClass('icon-folder-close')) {
+			$(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-folder-open').removeClass('icon-folder-close');
+		} else {
+			$(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+		}
         }
         e.stopPropagation();
     });
